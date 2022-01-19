@@ -1,11 +1,11 @@
 import React, { useState, useContext, useEffect } from "react";
 import { getMonth } from './utils';
-import { Sidebar, Month, CalendarHeader } from './components';
+import { Sidebar, Month, CalendarHeader, EventModal } from './components';
 import GlobalContext from "./context/GlobalContext";
 
 function App() {
   const [currenMonth, setCurrentMonth] = useState(getMonth());
-  const { monthIndex } = useContext(GlobalContext);
+  const { monthIndex, showEventModal } = useContext(GlobalContext);
 
   useEffect(() => {
     setCurrentMonth(getMonth(monthIndex));
@@ -13,6 +13,7 @@ function App() {
 
   return (
     <React.Fragment>
+      {showEventModal && <EventModal />}
       <div className="h-screen flex flex-col">
         <CalendarHeader />
         <div className="flex flex-1">
